@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Us · S.H.E.</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:linear-gradient(to right, #fff1f5, #ffeef3);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px 20px;
+    }
+
+    .contact-box{
+      width:100%;
+      max-width:700px;
+      background:#fff0f5;
+      padding:50px;
+      border-radius:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      animation:fadeIn 1s ease;
+    }
+
+    .contact-box h1{
+      text-align:center;
+      color:#ff4f81;
+      margin-bottom:15px;
+      font-size:42px;
+    }
+
+    .contact-box p{
+      text-align:center;
+      color:#666;
+      margin-bottom:35px;
+      line-height:1.7;
+    }
+
+    .contact-form{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+      padding:16px;
+      border:none;
+      border-radius:15px;
+      background:#ffe5ee;
+      outline:none;
+      font-size:16px;
+      transition:0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus{
+      transform:scale(1.01);
+      box-shadow:0 0 0 3px rgba(255,79,129,0.2);
+    }
+
+    .contact-form textarea{
+      height:150px;
+      resize:none;
+    }
+
+    .submit-btn{
+      padding:16px;
+      border:none;
+      border-radius:30px;
+      background:#ff4f81;
+      color:white;
+      font-size:17px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .submit-btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 10px 20px rgba(255,79,129,0.3);
+    }
+
+    #successMessage{
+      display:none;
+      margin-top:20px;
+      text-align:center;
+      color:#ff4f81;
+      font-weight:bold;
+      font-size:18px;
+    }
+
+    .back-btn{
+      display:inline-block;
+      margin-top:30px;
+      text-decoration:none;
+      color:#ff4f81;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .back-btn:hover{
+      letter-spacing:1px;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @media(max-width:768px){
+
+      .contact-box{
+        padding:35px 25px;
+      }
+
+      .contact-box h1{
+        font-size:34px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="contact-box">
+
+    <h1>Contact Us</h1>
+
+    <p>
+      We'd love to hear from you. Reach out to She Can Foundation
+      for volunteering, support, partnerships, or any questions.
+    </p>
+
+    <form class="contact-form" id="contactForm">
+
+      <input 
+        type="text" 
+        placeholder="Enter Your Name"
+        required
+      >
+
+      <input 
+        type="email" 
+        placeholder="Enter Your Email"
+        required
+      >
+
+      <textarea 
+        placeholder="Write Your Message"
+        required
+      ></textarea>
+
+      <button type="submit" class="submit-btn">
+        Send Message
+      </button>
+
+    </form>
+
+    <p id="successMessage">
+      Form Submitted Successfully
+    </p>
+
+    <a href="index.html" class="back-btn">
+      ← Back To Home
+    </a>
+
+  </div>
+
+  <script>
+
+    const form = document.getElementById("contactForm");
+    const successMessage = document.getElementById("successMessage");
+
+    form.addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      successMessage.style.display = "block";
+
+      form.reset();
+
+    });
+
+  </script>
+
+</body>
+</html> 
