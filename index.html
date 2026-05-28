@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home · S.H.E.</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f5f7fb;
+      color:#222;
+      transition:0.4s;
+      overflow-x:hidden;
+    }
+
+    body.dark{
+      background:#121212;
+      color:#fff;
+    }
+
+    header{
+      width:100%;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:fixed;
+      top:0;
+      z-index:1000;
+      backdrop-filter:blur(10px);
+      background:rgba(255,255,255,0.7);
+      transition:0.4s;
+    }
+
+    body.dark header{
+      background:rgba(0,0,0,0.6);
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      color:#ff4f81;
+    }
+
+    nav a{
+      text-decoration:none;
+      color:#333;
+      margin-left:25px;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+    body.dark nav a{
+      color:white;
+    }
+
+    nav a:hover{
+      color:#ff4f81;
+    }
+
+    .toggle-btn{
+      padding:10px 18px;
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      background:#ff4f81;
+      color:white;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .toggle-btn:hover{
+      transform:scale(1.05);
+    }
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      align-items:center;
+      padding:120px 8% 60px;
+      gap:50px;
+    }
+
+    .hero-text{
+      animation:slideLeft 1s ease;
+    }
+
+    .hero-text h1{
+      font-size:58px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero-text span{
+      color:#ff4f81;
+    }
+
+    .hero-text p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:30px;
+      color:#555;
+    }
+
+    body.dark .hero-text p{
+      color:#ddd;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:15px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:14px 28px;
+      border:none;
+      border-radius:30px;
+      cursor:pointer;
+      text-decoration:none;
+      font-size:16px;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .primary-btn{
+      background:#ff4f81;
+      color:white;
+    }
+
+    .secondary-btn{
+      background:white;
+      border:2px solid #ff4f81;
+      color:#ff4f81;
+    }
+
+    body.dark .secondary-btn{
+      background:transparent;
+      color:white;
+      border-color:white;
+    }
+
+    .btn:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero-image{
+      text-align:center;
+      animation:slideRight 1s ease;
+      position:relative;
+    }
+
+    .hero-image img{
+      width:100%;
+      max-width:480px;
+      border-radius:25px;
+      transition:0.4s;
+      box-shadow:0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .hero-image img:hover{
+      transform:scale(1.05) rotate(1deg);
+    }
+
+    .floating-card{
+      position:absolute;
+      background:white;
+      padding:15px 20px;
+      border-radius:15px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
+      animation:float 3s infinite ease-in-out;
+    }
+
+    body.dark .floating-card{
+      background:#1e1e1e;
+    }
+
+    .card1{
+      top:20px;
+      left:0;
+    }
+
+    .card2{
+      bottom:20px;
+      right:0;
+      animation-delay:1s;
+    }
+
+    .about{
+      padding:90px 8%;
+      text-align:center;
+    }
+
+    .section-title{
+      font-size:42px;
+      margin-bottom:20px;
+      color:#ff4f81;
+    }
+
+    .about p{
+      max-width:900px;
+      margin:auto;
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    .stats{
+      padding:50px 8%;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .stat-box{
+      background:white;
+      padding:35px;
+      border-radius:20px;
+      text-align:center;
+      transition:0.4s;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    }
+
+    body.dark .stat-box{
+      background:#1f1f1f;
+    }
+
+    .stat-box:hover{
+      transform:translateY(-8px);
+    }
+
+    .stat-box h2{
+      font-size:42px;
+      color:#ff4f81;
+      margin-bottom:10px;
+    }
+
+    footer{
+      margin-top:50px;
+      background:#111;
+      color:white;
+      text-align:center;
+      padding:25px;
+    }
+
+    @keyframes slideLeft{
+      from{
+        opacity:0;
+        transform:translateX(-60px);
+      }
+      to{
+        opacity:1;
+        transform:translateX(0);
+      }
+    }
+
+    @keyframes slideRight{
+      from{
+        opacity:0;
+        transform:translateX(60px);
+      }
+      to{
+        opacity:1;
+        transform:translateX(0);
+      }
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+      100%{
+        transform:translateY(0px);
+      }
+    }
+
+    @media(max-width:768px){
+
+      header{
+        padding:15px 5%;
+      }
+
+      nav{
+        display:none;
+      }
+
+      .hero{
+        padding-top:120px;
+        text-align:center;
+      }
+
+      .hero-text h1{
+        font-size:40px;
+      }
+
+      .hero-buttons{
+        justify-content:center;
+      }
+
+      .section-title{
+        font-size:34px;
+      }
+
+      .floating-card{
+        display:none;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <header>
+
+    <div class="logo">She Can Foundation</div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="D:\06_Work\Tasks\SHE\contact.html">Contact Us</a>
+    </nav>
+
+    <button class="toggle-btn" onclick="toggleDarkMode()">
+      Dark Mode
+    </button>
+
+  </header>
+
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+
+      <h1>
+        Together <span>She Can</span> Achieve Anything
+      </h1>
+
+      <p>
+        Securing Health Empowerment (S.H.E.) is an international organization
+        paving the way to an extensive and more sustainable solution to Menstrual
+        Health Management (MHM) and other women-related health conditions.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="D:\06_Work\Tasks\SHE\contact.html" class="btn primary-btn">Contact Us</a>
+        <a href="#about" class="btn secondary-btn">Learn More</a>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+
+      <img
+        src="D:\06_Work\Tasks\SHE\she.jpg"
+        alt="Women Empowerment"
+      />
+
+      <div class="floating-card card1">
+        🌸 Empower Women
+      </div>
+
+      <div class="floating-card card2">
+        📚 Education For All
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="about" id="about">
+
+    <h2 class="section-title">About Our NGO</h2>
+
+    <p>
+      S.H.E. is on a mission to ‘keep girls in school’ and works closely with
+      schools in rural communities of Sub-Saharan Africa. Our objective is to help
+      girls stay in school by creating a more conducive and gender sensitive environment
+      that enables them to participate more inside and outside the classroom with added
+      confidence and dignity. We want to go beyond physical health and prioritize the
+      general well-being of women and girls in policymaking. 
+    </p>
+
+  </section>
+
+  <section class="stats" id="impact">
+
+    <div class="stat-box">
+      <h2 id="count1">0</h2>
+      <p>Current Reach</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="count2">0</h2>
+      <p>Target Reach</p>
+    </div>
+
+    <div class="stat-box">
+      <h2 id="count3">0</h2>
+      <p>Fundraiser Goal</p>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Copyright © 2026 S.H.E. All rights reserved | Designed by Abhishek</p>
+  </footer>
+
+  <script>
+    function toggleDarkMode(){
+      document.body.classList.toggle("dark");
+    }
+    function counter(id, start, end, speed){
+
+      let obj = document.getElementById(id);
+
+      let current = start;
+
+      let timer = setInterval(function(){
+
+        current++;
+
+        obj.innerHTML = current;
+
+        if(current >= end){
+          clearInterval(timer);
+        }
+
+      }, speed);
+    }
+
+    counter("count1", 3500, 4000, 1);
+    counter("count2", 9500, 10000, 1);
+    counter("count3", 99500, 100000, 1);
+
+  </script>
+
+</body>
+</html>
